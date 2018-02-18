@@ -48,7 +48,8 @@ typedef struct {
 
 
 // U8g2 Contructor List (Picture Loop Page Buffer)
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
 static HX711 scale;
 static setting cfg = {// default
   .ver = E2P_VER,
@@ -456,7 +457,7 @@ static void Calibration()
 #endif
 }
 
-static LoadSettings(void)
+static void LoadSettings(void)
 {
   // check data
   setting cfg_load;
