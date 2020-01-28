@@ -16,6 +16,11 @@ From Arduino IDE install the following libraries:
   * EEPROM by Arduino
   * HX711 by bogde, https://github.com/bogde/HX711
 
+# Pinout
+  * Encoder: 2(DT), 3(CLK), 4(SW)
+  * Display (I2C): A4(SDA), A5(SCK)
+  * HX711: A1(DT), A2(SCK)
+
 # Lincense
 This software is released under GPLv3.
 

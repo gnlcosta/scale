@@ -30,6 +30,7 @@
 #define ENCODER_PIN_SW        4                // Encoder variable - SW
 #define ENCODER_PIN_B         2                // Encoder variable - DT
 #define ENCODER_PIN_A         3                // Encoder variable - CLK
+#define ENCODER_SCALING       4
 #define PUSH_MIN_TIME         100              // ms
 
 #define OZ_TO_G                28,3495
@@ -197,7 +198,7 @@ void MenuSettings(void)
           u8g2.print(str);
         } while ( u8g2.nextPage() );
         // upgrade
-        delta = (myEnc.read() - enc_pos)/2;
+        delta = (myEnc.read() - enc_pos)/ENCODER_SCALING;
         if (delta) {
           max_cell += delta;
           enc_pos = myEnc.read();
@@ -264,7 +265,7 @@ uint8_t u8x8_GetMenuEvent(u8x8_t *u8x8)
   static long enc_pos = -9999;
   long enc_rt;
 
-  enc_rt = (myEnc.read()/2);
+  enc_rt = (myEnc.read()/ENCODER_SCALING);
   if (enc_pos == -9999)
     enc_pos = enc_rt;
   
@@ -322,7 +323,7 @@ static void Weight(void)
   static float peso_raw = 0;
   float peso;
   char p[30], str[30];
-  char *unit_msr;
+  const char *unit_msr;
   short virgola = 1;
   unsigned short level;
 
@@ -439,7 +440,7 @@ static void Calibration()
       u8g2.print(str);
     } while ( u8g2.nextPage() );
     // upgrade
-    delta = (myEnc.read() - enc_pos)/2;
+    delta = (myEnc.read() - enc_pos)/ENCODER_SCALING;
     if (delta) {
       weight += ((float)delta)/10;
       enc_pos = myEnc.read();
@@ -563,4 +564,3 @@ void loop(void)
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
 }
-
